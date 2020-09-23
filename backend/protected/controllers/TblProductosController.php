@@ -23,7 +23,10 @@ class TblProductosController extends Controller
 
 	public function actionView($id)
 	{
-        $this->sendResponse($this->loadModel($id));
+		$id = (int) $id;
+		$data = TblProductos::model()->findByPk($id);
+		$response = is_null($data)?null:$data->getData();
+        $this->sendResponse($response,false);
 	}
 
 	/**
