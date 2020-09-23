@@ -5,3 +5,11 @@ protected/runtime/*
 !protected/runtime/.gitignore
 protected/data/*.db
 themes/classic/views/
+
+backend/protected/vendor/*
+backend/assets/*
+backend/!assets/.gitignore
+backend/protected/runtime/*
+backend/!protected/runtime/.gitignore
+backend/protected/data/*.db
+backend/themes/classic/views/
