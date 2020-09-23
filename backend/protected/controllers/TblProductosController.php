@@ -26,7 +26,7 @@ class TblProductosController extends Controller
 		$id = (int) $id;
 		$data = TblProductos::model()->findByPk($id);
 		$response = is_null($data)?null:$data->getData();
-        $this->sendResponse($response,false);
+        $this->sendResponse($response);
 	}
 
 	/**

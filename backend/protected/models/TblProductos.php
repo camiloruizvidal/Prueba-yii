@@ -108,9 +108,9 @@ class TblProductos extends CActiveRecord implements AjaxResponseInterface
 
 
 	public function getData()
-    {
-        return $this->getAttributes();
-    }
+	{
+		return $this->getAttributes();
+	}
 
 
 }
