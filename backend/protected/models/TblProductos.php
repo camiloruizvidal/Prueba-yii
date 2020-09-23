@@ -57,11 +57,11 @@ class TblProductos extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'description' => 'Description',
-			'reference' => 'Reference',
+			'description' => 'Descripcion',
+			'reference' => 'Referencia',
 			'stock' => 'Stock',
 			'currency' => 'Currency',
-			'price' => 'Price',
+			'price' => 'Precio',
 		);
 	}
 
