@@ -11,16 +11,6 @@ class TblProductosController extends Controller
 	/**
 	 * @return array action filters
 	 */
-	public function sendAjaxResponse(AjaxResponseInterface $model)
-	{
-		header('Content-type: application/json',true,200);
-		echo json_encode([
-			'data'=>$model->getData(),
-			'errors'=>$model->getErrors(),
-		]);
-		Yii::app()->end();
-	}
-
 
 	public function filters()
 	{
@@ -47,6 +37,17 @@ class TblProductosController extends Controller
 		$result = $model->save();
 		$this->sendAjaxResponse($model);
 	}
+	public function sendAjaxResponse(AjaxResponseInterface $model)
+	{
+		header('Content-type: application/json',true,200);
+		echo json_encode([
+			'data'=>$model->getResponseData(),
+			'errors'=>$model->getErrors(),
+		]);
+		Yii::app()->end();
+	}
+
+
 
 	/**
 	 * Updates a particular model.
