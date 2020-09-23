@@ -23,7 +23,7 @@ class TblProductosController extends Controller
 
 	public function actionView($id)
 	{
-        $this->sendAjaxResponse($this->loadModel($id));
+        $this->sendResponse($this->loadModel($id));
 	}
 
 	/**
@@ -32,22 +32,17 @@ class TblProductosController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new TblProductos;
-		$model->attributes = $_POST;
-		$result = $model->save();
-		$this->sendAjaxResponse($model);
+		$model  			= new TblProductos;
+		$model->attributes 	= $_POST;
+		$result 			= $model->save();
+		$this->sendResponse($model->attributes);
 	}
-	public function sendAjaxResponse(AjaxResponseInterface $model)
+	public function sendResponse($data,$validate=true)
 	{
 		header('Content-type: application/json',true,200);
-		echo json_encode([
-			'data'=>$model->getResponseData(),
-			'errors'=>$model->getErrors(),
-		]);
+		echo json_encode(['validate'=>$validate,'data'=>$data]);
 		Yii::app()->end();
 	}
-
-
 
 	/**
 	 * Updates a particular model.
@@ -60,7 +55,7 @@ class TblProductosController extends Controller
         $model->attributes = Yii::app()->getRequest()->getRestParams();
         $model->save();
 
-        $this->sendAjaxResponse($model);
+        $this->sendResponse($model);
 	}
 
 	/**
@@ -72,7 +67,7 @@ class TblProductosController extends Controller
 	{
         $model = $this->loadModel($id);
         $model->delete();
-        $this->sendAjaxResponse($model);
+        $this->sendResponse($model);
 	}
 
 	/**
@@ -80,8 +75,8 @@ class TblProductosController extends Controller
 	 */
 	public function actionIndex()
 	{
-        $dataProvider=new ActiveDataProvider('TblProductos');
-        $this->sendAjaxResponse($dataProvider);
+		$dataProvider = new ActiveDataProvider('TblProductos');
+        $this->sendResponse($dataProvider->getResponseData());
 	}
 	/**
 	 * Manages all models.

@@ -4,7 +4,8 @@ class ActiveDataProvider extends CActiveDataProvider implements AjaxResponseInte
     public function getResponseData()
     {
         $result = []; 
-        foreach ($this->getData() as $record) {
+        $data=$this->getData();
+        foreach ($data as $record) {
             $result[] = $record->getAttributes();
         }
 
