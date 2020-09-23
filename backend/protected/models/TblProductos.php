@@ -11,7 +11,7 @@
  * @property string $currency
  * @property double $price
  */
-class TblProductos extends CActiveRecord
+class TblProductos extends CActiveRecord implements AjaxResponseInterface
 {
 	/**
 	 * @return string the associated database table name
@@ -105,4 +105,12 @@ class TblProductos extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+
+	public function getData()
+    {
+        return $this->getAttributes();
+    }
+
+
 }

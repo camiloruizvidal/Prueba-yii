@@ -20,4 +20,33 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+
+    public function filterPutOnly($filterChain)
+    {
+        if(Yii::app()->getRequest()->getIsPutRequest())
+            $filterChain->run();
+        else
+            throw new CHttpException(400,Yii::t('yii','Your request is invalid.'));
+    }
+
+    public function filterDeleteOnly($filterChain)
+    {
+        if(Yii::app()->getRequest()->getIsDeleteRequest())
+            $filterChain->run();
+        else
+            throw new CHttpException(400,Yii::t('yii','Your request is invalid.'));
+    }
+
+    protected function sendAjaxResponse(AjaxResponseInterface $model)
+    {
+        $success = count($model->getErrors()) === 0;
+        $response_code = $success ? 200 : 404;
+        header('Content-type: application/json', true, $response_code);
+        echo json_encode([
+            'success' => $success,
+            'data' => $model->getResponseData(),
+            'errors' => $model->getErrors()
+        ]);
+        Yii::app()->end();
+    }
 }
