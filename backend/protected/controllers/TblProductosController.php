@@ -40,9 +40,9 @@ class TblProductosController extends Controller
 		$result 			= $model->save();
 		$this->sendResponse($model->attributes);
 	}
-	public function sendResponse($data,$validate=true)
+	public function sendResponse($data,$validate=true, $code=200)
 	{
-		header('Content-type: application/json',true,200);
+		header('Content-type: application/json',true,$code);
 		echo json_encode(['validate'=>$validate,'data'=>$data]);
 		Yii::app()->end();
 	}
@@ -55,13 +55,20 @@ class TblProductosController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=TblProductos::model()->findByPk($id);
-		$model->description=$_POST['description'];
-		$model->reference=$_POST['reference'];
-		$model->stock=$_POST['stock'];
-		$model->currency=$_POST['currency'];
-		$model->price=$_POST['price'];
-		$model->save();
-        $this->sendResponse($model);
+		if(!is_null($model))
+		{
+
+			$model->description=$_POST['description'];
+			$model->reference=$_POST['reference'];
+			$model->stock=$_POST['stock'];
+			$model->currency=$_POST['currency'];
+			$model->price=$_POST['price'];
+			$model->save();
+			$this->sendResponse($_POST);
+		}
+		else{
+			$this->sendResponse('No existe registro con el id '.$id,false,405);
+		}
 	}
 
 	/**
@@ -73,7 +80,7 @@ class TblProductosController extends Controller
 	{
         $model = $this->loadModel($id);
         $model->delete();
-        $this->sendResponse($model);
+        $this->sendResponse($id);
 	}
 
 	/**
