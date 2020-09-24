@@ -49,16 +49,16 @@ export default
 		{
 			let url = config.apipath + "tblproductos/view/id/" + this.id;
 			axios
-				.get(url)
-				.then((response) =>
+			.get(url)
+			.then((response) =>
+			{
+				if (response.data.validate)
 				{
-					if (response.data.validate)
-					{
-						this.form = response.data.data;
-					}
-				})
-				.catch((error) =>
-				{});
+					this.form = response.data.data;
+				}
+			})
+			.catch((error) =>
+			{});
 		},
 		save()
 		{
@@ -68,22 +68,21 @@ export default
 			}
 			let url = config.apipath + "tblproductos/update/id/" + this.id;
 			axios
-				.post(url, this.form)
-				.then((response) =>
+			.post(url,this.form)
+			.then((response) =>
+			{
+				this.$bvToast.toast("Producto Editado correctamente",
 				{
-					this.$bvToast.toast("Producto Editado correctamente",
-					{
-						title: "Editar Producto",
-						variant: "success",
-						solid: true,
-					});
-
-					this.$router.push("/productos");
-				})
-				.catch((error) =>
-				{
-					console.log(error);
+					title: "Editar Producto",
+					variant: "success",
+					solid: true,
 				});
+				this.$router.push("/productos");
+			})
+			.catch((error) =>
+			{
+				console.log(error);
+			});
 		},
 		back()
 		{

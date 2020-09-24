@@ -51,7 +51,7 @@ class TblProductosController extends Controller
 		$model=TblProductos::model()->findByPk($id);
 		if(!is_null($model))
 		{
-
+			//$this->sendResponse('debug '.$id,false,405);
 			$model->description=$_POST['description'];
 			$model->reference=$_POST['reference'];
 			$model->stock=$_POST['stock'];

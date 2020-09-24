@@ -1,7 +1,7 @@
 export default [
 	{ path: '/', redirect: '/productos' },
-	{ path: '/productos', component: () => import(/* webpackChunkName: "productos" */ '../pages/Index.vue') },
-	{ path: '/productos/crear', component: () => import(/* webpackChunkName: "crear-productos" */ '../pages/Create.vue') },
-	{ path: '/productos/editar/:id', component: () => import(/* webpackChunkName: "editar-productos" */ '../pages/Edit.vue') },
-	{ path: '/productos/ver/:id', component: () => import(/* webpackChunkName: "ver-productos" */ '../pages/Show.vue') }
+	{ path: '/productos', component: () => import('../pages/Index.vue') },
+	{ path: '/productos/crear', component: () => import('../pages/Create.vue') },
+	{ path: '/productos/editar/:id', component: () => import('../pages/Edit.vue') },
+	{ path: '/productos/ver/:id', component: () => import('../pages/Show.vue') }
 ]

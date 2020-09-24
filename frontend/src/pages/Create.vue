@@ -26,9 +26,8 @@
 	</b-card>
 </template>
 <script>
-	// import axios from "axios"
-	// import * as config from '../config'
-	
+	import axios from "axios"
+	import * as config from '../config'
 	export default {
 		components: {
 			'input-form': () => import('../components/Form')
@@ -52,33 +51,20 @@
 				if(!this.validated) {
 					return
 				}
-				/* Temporal */
-				let products = JSON.parse(sessionStorage.getItem('products'))
-				
-				if(!products) {
-					products = []
-				}
 	
-				this.form.id = products.length + 1
-				products.push(this.form)
-				sessionStorage.setItem('products', JSON.stringify(products))
-	
-				/* Temporal */
-	
-				// axios.post(config.apipath + '')
-				// .then(response => {
-					// console.log(response)
-				// })
-				// .catch(error => {
-					// console.log(error)
-				// })
-	
-				this.$bvToast.toast('Producto Creado correctamente', {
-					title: 'Crear Producto',
-					variant: 'success',
-					solid: true
+				axios.post(config.apipath + 'tblproductos/create',this.form)
+				.then(response => {
+					if(response.data.validate)
+					{
+						this.$bvToast.toast('Producto Creado correctamente', {
+							title: 'Crear Producto',
+							variant: 'success',
+							solid: true
+						})
+					}
 				})
-	
+				.catch(error => {
+				})
 				this.$router.push('/productos')
 			},
 			back() {

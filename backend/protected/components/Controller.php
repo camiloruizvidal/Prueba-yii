@@ -23,15 +23,11 @@ class Controller extends CController
 
 	function __construct()
 	{
-		$content_type = 'application/json';
-		$status = 200;
-		// set the status
-		$status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);
-		header($status_header);
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-		header("Access-Control-Allow-Headers: Authorization");
-		header('Content-type: ' . $content_type);
+		header('Access-Control-Allow-Origin: *');
+		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+		header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+
 		
 	}
 	public $breadcrumbs=array();
