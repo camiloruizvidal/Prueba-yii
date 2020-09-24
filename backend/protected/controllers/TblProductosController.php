@@ -15,8 +15,8 @@ class TblProductosController extends Controller
 	public function filters()
 	{
 		return array(
-			'postOnly + create', // we only allow deletion via POST request
-            'putOnly + update',
+			'postOnly + create', 
+            'postOnly + update',
             'deleteOnly + delete'
 		);
 	}
@@ -54,10 +54,13 @@ class TblProductosController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
-        $model->attributes = Yii::app()->getRequest()->getRestParams();
-        $model->save();
-
+		$model=TblProductos::model()->findByPk($id);
+		$model->description=$_POST['description'];
+		$model->reference=$_POST['reference'];
+		$model->stock=$_POST['stock'];
+		$model->currency=$_POST['currency'];
+		$model->price=$_POST['price'];
+		$model->save();
         $this->sendResponse($model);
 	}
 
