@@ -88,13 +88,13 @@
 			
 		</b-row>
 		<b-row>
-			<div v-if="items.length" class="text-center">
+			<b-col md="12" lg="12" sm="12" v-if="items.length" class="text-right">
 				<pagination 
 					:totalRows="totalRows"
 					:currentPage.sync="currentPage"
 					:perPage.sync="perPage"
 				/>
-			</div>
+			</b-col>
 		</b-row>
 	</b-card-text>
 	<delete v-if="productId != null" :productId="productId" />

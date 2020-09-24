@@ -1,13 +1,13 @@
 <template>
-    <div class="text-center">
-        <b-row>
-            <b-col lg="12" md="12" class="justify-content-lg-end">
+    <div>
+        <b-row  class="justify-content-lg-end">
+            <b-col lg="12" md="12">
                 <label>
                     <small>
                         <strong>Filas por página:</strong>
                     </small>
                 </label>
-                <b-form-select class="ml-3 mr-3 col-md-3 text-center" col-sm-1 col-xs-2
+                <b-form-select class="ml-3 mr-3 col-md-1 justify-content-lg-end" col-sm-1 col-xs-2
                   v-model="rowPerPage" 
                   :options="pageOption"
                 >
