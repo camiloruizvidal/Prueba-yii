@@ -19,6 +19,21 @@ class Controller extends CController
 	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
 	 * for more details on how to specify this property.
 	 */
+
+
+	function __construct()
+	{
+		$content_type = 'application/json';
+		$status = 200;
+		// set the status
+		$status_header = 'HTTP/1.1 ' . $status . ' ' . $this->_getStatusCodeMessage($status);
+		header($status_header);
+		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+		header("Access-Control-Allow-Headers: Authorization");
+		header('Content-type: ' . $content_type);
+		
+	}
 	public $breadcrumbs=array();
 
     public function filterPutOnly($filterChain)
