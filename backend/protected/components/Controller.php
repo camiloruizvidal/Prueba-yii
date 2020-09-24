@@ -35,5 +35,11 @@ class Controller extends CController
             $filterChain->run();
         else
             throw new CHttpException(400,Yii::t('yii','Your request is invalid.'));
-    }
+	}
+	public function sendResponse($data,$validate=true, $code=200)
+	{
+		header('Content-type: application/json',true,$code);
+		echo json_encode(['validate'=>$validate,'data'=>$data]);
+		Yii::app()->end();
+	}
 }

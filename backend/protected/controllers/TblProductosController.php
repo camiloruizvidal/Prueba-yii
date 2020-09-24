@@ -40,12 +40,6 @@ class TblProductosController extends Controller
 		$result 			= $model->save();
 		$this->sendResponse($model->attributes);
 	}
-	public function sendResponse($data,$validate=true, $code=200)
-	{
-		header('Content-type: application/json',true,$code);
-		echo json_encode(['validate'=>$validate,'data'=>$data]);
-		Yii::app()->end();
-	}
 
 	/**
 	 * Updates a particular model.
