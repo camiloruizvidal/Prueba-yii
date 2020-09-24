@@ -1,3 +1,3 @@
 module.exports = {
-	apipath: 'http://localhost:8000/api/v1/'
+	apipath: 'http://localhost/yii/backend/index.php?r='
 } 

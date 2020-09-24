@@ -101,8 +101,8 @@
 </b-card>
 </template>
 <script>
-// import axios from "axios"
-// import * as config from '../config'
+import axios from "axios"
+import * as config from '../config'
 import EventBus from "../module/EventBus"
 
 export default {
@@ -131,9 +131,14 @@ export default {
 	},
 	methods: {
 		index() {
-			let products = sessionStorage.getItem('products');
-
-			this.items = JSON.parse(products);
+			axios
+			.get(config.apipath+'tblproductos')
+			.then((response)=>{
+				if(response.data.validate)
+				{
+					this.items = response.data.data;
+				}
+			})
 			this.totalRows = this.items.length
 		},
 		create_product() {
